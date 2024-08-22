@@ -56,6 +56,12 @@ docker run -p 25:25 $IMAGE
 - Ubuntu 20.04
 - ppa:sasl-xoauth2/stable
 
+## docker 
+
+```
+docker pull ghcr.io/takuya/takuya/postfix-gmail
+```
+
 ## TODO
 
 - docker images 
