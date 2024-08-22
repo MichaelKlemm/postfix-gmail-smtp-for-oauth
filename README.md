@@ -59,7 +59,7 @@ docker run -p 25:25 $IMAGE
 ## docker 
 
 ```
-docker pull ghcr.io/takuya/takuya/postfix-gmail
+docker pull ghcr.io/takuya/takuya/postfix-gmail:latest
 ```
 
 ## TODO
