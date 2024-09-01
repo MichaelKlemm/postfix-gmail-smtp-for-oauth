@@ -43,11 +43,14 @@ Select `Web App` and Click `Add URI` and Enter `oauth2.dance`.
 
 `https://oauth2.dance/` as a redirect addr to make refresh token.
 
+#### Set up OAuth2 Tokens(Refresh token  / ACCESS token  )
 ```sh
 wget https://raw.githubusercontent.com/google/gmail-oauth2-tools/master/python/oauth2.py
 python oauth2.py --generate_oauth2_token --client_id="${client_id}" --client_secret="{$client_secret}"
 ```
 
+Access-token will be expired. After Access-token expired, refresh token used to re-generate Access-token.
+refresh-token is higher important token .
 
 ## env_var file
 ```
