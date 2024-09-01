@@ -1,14 +1,9 @@
 #!/bin/bash
 
 ## prepare dirs
-#mkdir -p /var/spool/postfix/etc/ssl/certs 
-# mkdir -p /var/spool/postfix/etc/tokens/
-#chown -R postfix:postfix /var/spool/postfix/etc/tokens/ 
-#mkdir -p /var/spool/postfix/etc/ssl/certs
-
 mkdir -p /etc/postfix/tokens
 
-## copy original to dest
+## copy config-template to dest
 cp conf/sender.tokens.json /etc/postfix/tokens/sender.tokens.json
 cp conf/sasl_passwd        /etc/postfix/sasl_passwd
 cp conf/sasl-xoauth2.conf  /etc/sasl-xoauth2.conf
@@ -35,8 +30,11 @@ smtpd_client_restrictions = permit_mynetworks permit_sasl_authenticated permit
 relayhost = __RELAY_HOST____
 
 " >> /etc/postfix/main.cf
+########################
+## replace varialbles
+########################
 
-## replace 
+## vars
 __SMTP_SERVER___="${__SMTP_SERVER___:=smtp-relay.gmail.com}"
 __SMTP_TLS_PORT_="${__SMTP_TLS_PORT_:=587}"
 __SMTP_USER_ADDR="${__SMTP_USER_ADDR:=yourmail@example.com}"
@@ -47,12 +45,7 @@ __PROJECT_ID____="${__PROJECT_ID____:=gcp-project-334}"
 __CLIENT_SECRET_="${__CLIENT_SECRET_:=GOCSPX-XXX-XXXXXXXX}"
 __MY_NETWORKS___="${__MY_NETWORKS___:=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}"
 __RELAY_HOST____="[${__SMTP_SERVER___}]:${__SMTP_TLS_PORT_}"
-
-# sed -E -e "s|^mynetworks = .+$|mynetworks = __MY_NETWORKS___|" -i /etc/postfix/main.cf
-# sed -E -e "s|^relayhost = .+$|relayhost = __RELAY_HOST____|" -i /etc/postfix/main.cf
-# sed -E -e 's|"client_id":.+$|"client_id": __CLIENT_ID_____|' -i /etc/sasl-xoauth2.conf
-# sed -E -e 's|"client_secret":.+$|"client_id": __CLIENT_SECRET_|' -i /etc/sasl-xoauth2.conf
-
+## replace
 sed  -e "s|__ACCESS_TOKEN__|${__ACCESS_TOKEN__}|" -i /etc/postfix/tokens/sender.tokens.json
 sed  -e "s|__REFRESH_TOKEN_|${__REFRESH_TOKEN_}|" -i /etc/postfix/tokens/sender.tokens.json
 sed  -e "s|__SMTP_SERVER___|${__SMTP_SERVER___}|" -i /etc/postfix/sasl_passwd
@@ -73,10 +66,6 @@ touch  /etc/mailname
 ## refresh token
 sasl-xoauth2-tool test-token-refresh /etc/postfix/tokens/sender.tokens.json
 
-## start rsyslog for debug 
-#sed -e '/load="imklog"/s/^/#/' -i /etc/rsyslog.conf
-#service rsyslog start
-
 ## enable verbose log
 sed -e 's/"$/",/' -i /etc/sasl-xoauth2.conf
 sed -e '/}/i\ \ "log_full_trace_on_failure" : "yes",'  -i /etc/sasl-xoauth2.conf
@@ -95,11 +84,14 @@ cp  /etc/ssl/certs/* /var/spool/postfix/etc/ssl/certs/
 
 
 
+########################
 ## for debug
+########################
+## start rsyslog for debug 
+#sed -e '/load="imklog"/s/^/#/' -i /etc/rsyslog.conf
+#service rsyslog start
+## start postfix
 #service postfix start
-
-## for prod
-# sed -E -e '/^smtp\s+inet.+smtpd$/a \ \ \ \ -o maillog_file=/dev/stdout' -i /etc/postfix/master.cf
 
 ## CMD for debugging
 #sleep 5 && tail -f /var/log/mail.log

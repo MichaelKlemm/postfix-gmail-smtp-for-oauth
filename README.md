@@ -63,7 +63,7 @@ __SMTP_USER_ADDR=your-oauth2-granded-user@your-google-apps.tld
 __ACCESS_TOKEN__=your-access-token-genereated.(should)
 __REFRESH_TOKEN_=your-refresh-token-genereated.(must)
 __CLIENT_ID_____=your-app-id-in-project
-__PROJECT_ID____=your-app-id
+__PROJECT_ID____=your-project-name-id
 __CLIENT_SECRET_=your-apps-client-secret
 __MY_NETWORKS___=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 __RELAY_HOST____=[smtp.gmail.com]:587
@@ -79,8 +79,8 @@ run docker with env_vars.
 ```sh
 IMAGE=ghcr.io/takuya/takuya/postfix-gmail-smtp-for-oauth:latest
 docker pull $IMAGE
-docker run --name xoauth2 --env-file env_vars --rm $IMAGE
-```
+docker run -p 127.0.0.1:25252:25 --env-file env_vars --name xoauth2  --rm $IMAGE
+``` 
 
 ## TODO
 
