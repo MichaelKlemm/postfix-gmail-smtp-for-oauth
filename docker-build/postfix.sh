@@ -67,9 +67,13 @@ touch  /etc/mailname
 sasl-xoauth2-tool test-token-refresh /etc/postfix/tokens/sender.tokens.json
 
 ## enable verbose log
+### for prod use maillog
 sed -e 's/"$/",/' -i /etc/sasl-xoauth2.conf
-sed -e '/}/i\ \ "log_full_trace_on_failure" : "yes",'  -i /etc/sasl-xoauth2.conf
-sed -e '/}/i\ \ "always_log_to_syslog" : "yes"' -i /etc/sasl-xoauth2.conf
+sed -e '/}/i\ \ "log_full_trace_on_failure" : "yes"'  -i /etc/sasl-xoauth2.conf
+# for debug : use rsyslod
+# sed -e 's/"$/",/' -i /etc/sasl-xoauth2.conf
+# sed -e '/}/i\ \ "log_full_trace_on_failure" : "yes",'  -i /etc/sasl-xoauth2.conf
+# sed -e '/}/i\ \ "always_log_to_syslog" : "yes"' -i /etc/sasl-xoauth2.conf # 
 
 ## for chroot-ed  Postfix 
 mkdir -p /var/spool/postfix/etc/postfix
