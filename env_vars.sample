@@ -1,0 +1,10 @@
+__SMTP_SERVER___=smtp.gmail.com
+__SMTP_TLS_PORT_=587
+__SMTP_USER_ADDR=server-admin@examle.tld
+__ACCESS_TOKEN__=ya29xxxxxxxxxxxxxxxx0VtoGpcKXtg0175
+__REFRESH_TOKEN_=1//xxxxxxxxxxxxxxzvmRcwS7IgE11z0aXY
+__CLIENT_ID_____=xxxxx-xxxxxx.apps.googleusercontent.com
+__PROJECT_ID____=xxxxx-biz-oauth
+__CLIENT_SECRET_=GOCSPX-toxxxxxxRdTJ
+__MY_NETWORKS___=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+__RELAY_HOST____=[smtp.gmail.com]:587

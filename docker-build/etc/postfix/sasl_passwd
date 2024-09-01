@@ -1,2 +1,1 @@
-[smtp-relay.gmail.com]:587 yourmail@example.com:/etc/tokens/sender.tokens.json
-
+[__SMTP_SERVER___]:__SMTP_TLS_PORT_ __SMTP_USER_ADDR:/etc/postfix/tokens/sender.tokens.json
