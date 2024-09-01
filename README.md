@@ -77,7 +77,7 @@ ___Caution___ : ___Don't quotes variables___
 run docker with env_vars.
 
 ```sh
-IMAGE=ghcr.io/takuya/takuya/postfix-gmail:latest
+IMAGE=ghcr.io/takuya/takuya/postfix-gmail-smtp-for-oauth:latest
 docker pull $IMAGE
 docker run --name xoauth2 --env-file env_vars --rm $IMAGE
 ```
