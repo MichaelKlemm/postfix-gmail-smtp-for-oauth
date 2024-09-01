@@ -50,7 +50,7 @@ python oauth2.py --generate_oauth2_token --client_id="${client_id}" --client_sec
 ```
 
 Access-token will be expired. After Access-token expired, refresh token used to re-generate Access-token.
-refresh-token is higher important token .
+refresh-token is higher important than access-token.
 
 ## env_var file
 ```
