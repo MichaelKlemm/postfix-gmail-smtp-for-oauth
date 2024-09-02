@@ -9,7 +9,7 @@ Postfix will send mail via `smtp-relay.gmail.com:587` or `smtp.gmail.com:587` by
 ## usage 
 
 ```sh
-IMAGE=ghcr.io/takuya/takuya/postfix-gmail:latest
+IMAGE=ghcr.io/takuya/postfix-xoauth2
 docker pull $IMAGE
 
 ENV_FILE=env_vars
@@ -84,7 +84,7 @@ ___Caution___ : ___Don't quotes variables___
 run docker with env_vars.
 
 ```sh
-IMAGE=ghcr.io/takuya/takuya/postfix-gmail-smtp-for-oauth:latest
+IMAGE=ghcr.io/takuya/postfix-xoauth2
 docker pull $IMAGE
 docker run -p 127.0.0.1:25252:25 --env-file env_vars --name xoauth2  --rm $IMAGE
 ``` 
