@@ -9,7 +9,7 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: takuya/postfix-gmail-smtp-for-oauth
+      IMAGE_NAME: postfix-xoauth2
     steps:
       - name: checkout
         uses: actions/checkout@v4
