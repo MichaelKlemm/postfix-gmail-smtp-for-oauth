@@ -1,8 +1,10 @@
 services:
-  postfix-xoauth2:
-    image: ghcr.io/takuya/takuya/postfix-gmail-smtp-for-oauth:latest
-    container_name: postfix-xoauth2
-    env_file:
-      - env_vars
+  gmail-relay:
+    image: docker.io/takuya/postfix-gmail-smtp-for-oauth
+    container_name: gmail-relay
+    restart: unless-stopped
     ports:
-      - "25:25"
+      - "2525:25"
+    env_file:
+      - ./google-oauth/gmail.env
+

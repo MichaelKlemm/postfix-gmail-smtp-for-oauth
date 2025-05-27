@@ -47,7 +47,7 @@ COPY etc/sasl-xoauth2.conf   \
 
 ## finish 
 WORKDIR /root
-ENV TZ Asia/Tokyo
+ENV TZ=Asia/Tokyo
 EXPOSE 25/tcp
 CMD /root/conf/postfix.sh
 

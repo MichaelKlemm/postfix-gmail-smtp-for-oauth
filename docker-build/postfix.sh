@@ -85,7 +85,7 @@ chmod 660 /var/spool/postfix/etc/postfix/tokens/sender.tokens.json
 update-ca-certificates 2&> /dev/null
 mkdir -p /var/spool/postfix/etc/ssl/certs
 cp  /etc/ssl/certs/* /var/spool/postfix/etc/ssl/certs/
-
+postalias /etc/aliases
 
 
 ########################
